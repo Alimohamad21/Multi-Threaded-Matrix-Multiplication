@@ -51,18 +51,19 @@ void readMatricesFromFile(char *fileName) {
     }
     fscanf(fp, "%d", &rowCount1);
     fscanf(fp, "%d", &columnCount1);
-    matrix1 = malloc(rowCount1 * sizeof(int));
-    for (int i = 0; i < rowCount1; i++)
-        matrix1[i] = malloc(columnCount1 * sizeof(int));
+    matrix1 = malloc(rowCount1*2 * sizeof(int));
+    for (int i = 0; i < rowCount1*2; i++)
+        matrix1[i] = malloc(columnCount1*2 * sizeof(int));
     for (int i = 0; i < rowCount1; i++) {
         for (int j = 0; j < columnCount1; j++)
             fscanf(fp, "%d", &matrix1[i][j]);
     }
+
     fscanf(fp, "%d", &rowCount2);
     fscanf(fp, "%d", &columnCount2);
-    matrix2 = malloc(rowCount2 * sizeof(int));
-    for (int i = 0; i < rowCount2; i++)
-        matrix2[i] = malloc(columnCount2 * sizeof(int));
+    matrix2 = malloc(rowCount2*2 * sizeof(int));
+    for (int i = 0; i < rowCount2*2; i++)
+        matrix2[i] = malloc(columnCount2*2 * sizeof(int));
     for (int i = 0; i < rowCount2; i++) {
         for (int j = 0; j < columnCount2; j++)
             fscanf(fp, "%d", &matrix2[i][j]);
@@ -75,9 +76,9 @@ void multiplyMatricesByRow() {
         printf("Multiplication of Matrices is not possible\n");
         exit(0);
     }
-    outputMatrix = malloc(rowCount1 * sizeof(int));
-    for (int i = 0; i < rowCount1; i++)
-        outputMatrix[i] = malloc(columnCount2 * sizeof(int));
+    outputMatrix = malloc(rowCount1*2 * sizeof(int));
+    for (int i = 0; i < rowCount1*2; i++)
+        outputMatrix[i] = malloc(columnCount2*2 * sizeof(int));
     clock_t begin = clock();
     int noOfThreads = rowCount1;
     pthread_t th[noOfThreads];
@@ -104,9 +105,9 @@ void multiplyMatricesByElement() {
         printf("Multiplication of Matrices is not possible\n");
         exit(0);
     }
-    outputMatrix = malloc(rowCount1 * sizeof(int));
-    for (int i = 0; i < rowCount1; i++)
-        outputMatrix[i] = malloc(columnCount2 * sizeof(int));
+    outputMatrix = malloc(rowCount1*2 * sizeof(int));
+    for (int i = 0; i < rowCount1*2; i++)
+        outputMatrix[i] = malloc(columnCount2*2 * sizeof(int));
     clock_t begin = clock();
     int noOfThreads = rowCount1 * columnCount2;
     pthread_t th[noOfThreads];
